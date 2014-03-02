@@ -1,4 +1,3 @@
-jquery-conf-san-diego-2014-slidedesk
-====================================
-
-My slides and demo for jQuery Conference San Diego 2014.
+Handling real-time data on the web
+=======================================
+My slides and demos for jQuery Conference San Diego 2014.

@@ -1,0 +1,597 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"JS",
+				"json_encode"
+			],
+			[
+				"time",
+				"timestamp"
+			],
+			[
+				"set",
+				"setTimeout"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"terms",
+				"TermsandConditions"
+			],
+			[
+				"toggle",
+				"toggleOverlay2"
+			],
+			[
+				"str",
+				"strings"
+			],
+			[
+				"backgroud",
+				"background-color"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"preg",
+				"preg_match"
+			],
+			[
+				"trans",
+				"transactionid"
+			],
+			[
+				"tran",
+				"transactionid"
+			],
+			[
+				"soh_",
+				"soh_promocode"
+			],
+			[
+				"backgour",
+				"background-color"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"on",
+				"onclick"
+			],
+			[
+				"r",
+				"right"
+			],
+			[
+				"enable",
+				"enableclose"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"lan_t",
+				"lan_tile"
+			],
+			[
+				"lan_ch",
+				"lan_chevron"
+			],
+			[
+				"lan_e",
+				"lan_email"
+			],
+			[
+				"lan_c",
+				"lan_country"
+			],
+			[
+				"lan_sno",
+				"lan_snowcost  (variable)"
+			],
+			[
+				"st",
+				"strings"
+			],
+			[
+				"lan",
+				"lan_backto"
+			],
+			[
+				"lan_",
+				"lan_viewfrom"
+			],
+			[
+				"l",
+				"lan_numtile  (variable)"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"til",
+				"tileid"
+			],
+			[
+				"inc",
+				"include"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 357.0,
+		"selected_items":
+		[
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"html",
+				"HTMLPrettify"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git check",
+				"Git: Checkout"
+			]
+		],
+		"width": 536.0
+	},
+	"console":
+	{
+		"height": 292.0,
+		"history":
+		[
+			"sublime.active_window().active_view().settings().get('syntax')",
+			"git --version",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/DropPoint/Projects/workspace-4.2/jquery.websocket/jquery.websocket.js",
+		"/D/DropPoint/Projects/workspace-4.2/jquery.websocket/jquery.websocket.callback.js",
+		"/D/DropPoint/Projects/workspace-4.2/jquery.websocket/index.html",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-viewer/viewer/webroot/index.html",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/test.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/js/main.js",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/checkout.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/checkout/checkout.blank.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/tileajax.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/bootstrap.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/tc.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/receipt.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/personal.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/functions/html.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/tileCheck.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/chevrons/chevrons.base.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/css/main.css",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/tiles.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/js.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/locales/en.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/page/page.footer.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/index.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/chevronbase.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/.htaccess",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/images/opaqueDark.png",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/search.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/page/page.header.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/chevron.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/js/vendor/jquery.maphilight.min.js",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/W_SailAreas.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/E_SailAreas.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/celebrityEast.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/checkoutinner.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/header.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/tilefooter.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/smallchevron.php",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/certificate.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/config/database.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/page/page.javascript.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/js/vendor/jquery.mapz.min.js",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/js/vendor/jquery-ui.min.js",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/salutationdropdown.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/page/page.conversionInjection.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/page.header.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/javascript.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/config/defines.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/locales/locale.load.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/functions/language.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/conversionInjection.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/footer.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/js/js-image-slider.js",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/js/js-image-slider.css",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/css/main.css",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/User/Xdebug.sublime-settings",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/php/defines.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/functions/database.php",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/head.php",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/User/CodeFormatter.sublime-settings",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/.gitignore",
+		"/C/Users/justin.ribeiro/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/README.md",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/puppet/hieradata/common.yaml",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/Vagrantfile",
+		"/D/DropPoint/Projects/workspace-4.2/cyark-soh-ownourhouse-web/html/includes/defines.php",
+		"/D/DropPoint/Projects/workspace-4.2/Github2Glass/Vagrantfile",
+		"/C/cygwin64/home/justin.ribeiro/ownourhouse-snapshot/html/index.php",
+		"/C/cygwin64/home/justin.ribeiro/ownourhouse-snapshot/html/includes/functions/database.php",
+		"/C/cygwin64/home/justin.ribeiro/ownourhouse-snapshot/html/includes/css/main.css",
+		"/C/cygwin64/home/justin.ribeiro/html/checkout.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"*.php, *.js, D:\\DropPoint\\Projects\\workspace-4.2\\cyark-soh-ownourhouse-web",
+			"*.php, *.js, ,<open folders>",
+			"C:\\cygwin64\\home\\justin.ribeiro\\ownourhouse-snapshot\\html,*.php, *.js",
+			"C:\\cygwin64\\home\\justin.ribeiro\\ownourhouse-snapshot\\html",
+			"*.php,C:\\cygwin64\\home\\justin.ribeiro\\html",
+			"<open folders>,*.php",
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"img",
+			"cartSummary",
+			"isincart",
+			"selection2(",
+			"selection2",
+			"tileselectarray",
+			"salewi",
+			"tileloc",
+			"salew",
+			"editpanel",
+			"cartRowFixed",
+			"checkbox2",
+			"$direct",
+			"tiles.php",
+			".singleTile",
+			"toemail2",
+			"toemail",
+			"$toemail2",
+			"$toname",
+			"title",
+			"sendmai",
+			"large_image_name",
+			"$_GET['t']",
+			"PxPay_Url",
+			"#textarea",
+			"#image",
+			"changeloading",
+			"image",
+			"uploadtrigger",
+			"uploadImageHolder",
+			"timestamp",
+			"UPDATE",
+			"update",
+			"update	",
+			"update",
+			"large_photo_exists",
+			"SELECT",
+			"$text",
+			"uploadtext",
+			"getHeight",
+			"large_photo_exists",
+			"$text",
+			"$time",
+			"UPDATE",
+			"$sql2",
+			"$r2",
+			"$tileselectarray",
+			"$_SESSION['tilearray']",
+			"tileselection",
+			"salewindow",
+			"endsizewidth",
+			"selection2",
+			"salewindow",
+			"cart",
+			"cartRows",
+			"saleswindow",
+			"sales",
+			"saleswindow",
+			"sales",
+			"selection2",
+			"salewindow",
+			"cartRows",
+			"cart",
+			"tilesec",
+			"desktopS",
+			"editpanelpano",
+			"#editpanel",
+			"#edit",
+			"#upload",
+			"#wordp",
+			"#textarea",
+			"#maino",
+			"launchhomepano",
+			"pano",
+			"panoStart",
+			"pano",
+			"launchpano",
+			"finalcheckout",
+			"winTileText",
+			"tc",
+			"eidtover",
+			"mainoverlay",
+			"cell",
+			"giftSendToInput",
+			"giftSe",
+			"giftmarked",
+			"checkout",
+			"includes/tilefooter.php",
+			"imagecreatetruecolor",
+			"#tileviewcontainer",
+			"php",
+			"uploadersub",
+			"uploadersubmit",
+			".uploadTextBlockTwo",
+			"PATH",
+			"SN",
+			"tr",
+			"resizediamondimagecrop",
+			"var_dump",
+			"$numtile",
+			");\n",
+			"$LIDID",
+			"$pdo",
+			"PxPayRequest",
+			"submitForm",
+			"submit",
+			"submitf",
+			"verifyCheckoutForm",
+			"submitForm",
+			".'",
+			"'.",
+			"\\'",
+			"checkout",
+			"searchkeyup",
+			"mainsearch",
+			"toggleTile",
+			"search",
+			"cartRows",
+			"cartRow",
+			"editpanel",
+			"toggleOverlay2",
+			"color",
+			"launchtilepano2",
+			"editpano",
+			"E.12.09",
+			"E.15.22",
+			"E.06.16",
+			"E.10.10"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"$path",
+			"; ?>",
+			"<?php echo ",
+			"'",
+			"sendmail2",
+			"//sendmail2",
+			"",
+			"'",
+			"strings",
+			",",
+			"\": ",
+			"\"",
+			"",
+			"<hr>",
+			"class=\"horizontalbar\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.xdebug":
+	{
+		"height": 268.0
+	},
+	"project": "jquery-conference-sd-2014-slides.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false,
+			"restore_index":
+			{
+				"129":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"130":
+				{
+					"group": 0,
+					"index": 2
+				},
+				"131":
+				{
+					"group": 1,
+					"index": 0
+				},
+				"133":
+				{
+					"group": 0,
+					"index": 3
+				},
+				"137":
+				{
+					"group": 0,
+					"index": 4
+				},
+				"138":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"141":
+				{
+					"group": 1,
+					"index": 1
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					],
+					[
+						1,
+						0,
+						2,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					0.5,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
+		}
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 219.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

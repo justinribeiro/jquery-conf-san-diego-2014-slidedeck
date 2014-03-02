@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Handling real-time data on the web / jQuery Conference San Diego 2014 </title>
+
+    <meta name="description" content="Presentation slides for using real-time data on the web for jQuery Conference San Diego 2014">
+    <meta name="author" content="Justin Ribeiro">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <style>
+    /* JDR: not good practice, but it's a presentation...so let's roll with it */
+    body {
+      background: radial-gradient(circle farthest-corner at center center , #222222 0%, #000000 100%) repeat scroll 0 0 #000000;
+    }
+    
+    /* Layout Boundary for updating Glass stat pack */
+    #statpack {
+      left: 10px;
+      bottom: 10px;
+      width: 250px;
+      height: 100px;
+      overflow: hidden;
+      position: absolute;
+    }
+    
+    #glass-status {
+      position: relative;
+      z-index: 30;
+      bottom: 0;
+       padding: 0.5em;
+       vertical-align: top;
+      font-family: Lato, sans-serif;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: normal;
+      color: #fff;        
+     }
+     
+     #glass-status h1, h2 {
+       margin: 0.6em 0;
+     }
+    
+          
+     .li-data {
+       color: #96CA33;
+       font-weight: 800;
+       padding: 0 0.25em;
+     }
+     
+     .iconned {
+       padding-right: 0.6em !important;
+     }
+
+     /** Fix for FontAwesome w/Reveal **/
+    .reveal i.fa{
+         font-family: 'FontAwesome';
+         font-style: normal;
+         font-size: 100%;
+     }
+
+     .text-center {
+       text-align: center;
+     }
+
+     .reveal ul li, .reveal ol li  {
+       padding-bottom: 0.6em;
+     }
+
+     .reveal pre code {
+       max-height: none;
+     }
+
+    /* Notifications
+    -------------------------------------------------- */
+    #notification {
+      position:fixed;
+      z-index: 2000;
+      width: 100%;
+      display:none;
+      bottom: 0;
+    }
+
+    #notification-title, #notification-message {
+      margin: 0 0 20px 0;
+      color: #eeeeee;
+      font-family: Lato, sans-serif;
+      line-height: 0.9em;
+      letter-spacing: 0.02em;
+      text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #notification-title {
+      font-size: 3em;
+    }
+
+    #notification-message {
+      font-size: 1.6em;
+    }
+
+    .notification-show {
+      display:block !important;
+    }
+
+    .notification-padding {
+      padding: 2em;
+    }
+
+    .notification-error {
+      background-color: #c65757;
+    }
+    .notification-warning {
+      background-color: #f3c93f;
+    }
+    .notification-info {
+      background-color: #85beee;
+    }
+
+
+    .notification-success {
+      background-color: #8cc657;
+    }
+    .notification-success > div > h3, .notification-error > div > h3 {
+      color: #fff;
+    }
+    .notification-success > div > p, .notification-error > div > p {
+      color: #fff;
+    }
+    
+    .temp {
+      color: #96CA33;
+      font-weight: 800;
+      padding: 0 0.25em;
+    }
+    #sensorOutputs div {
+      padding: 0.5em;
+    }
+    
+    .smaller {
+      padding: 0 !important;
+      font-size: 75% !important;
+    }
+    
+    </style>
+    
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>Handling real-time data on the web</h1>
+          <h3>jQuery Conference San Diego 2014</h3>
+          <p>
+            <a href="http://justinribeiro.com">Justin Ribeiro</a>
+            <br>
+            <i class="fa fa-envelope-o"></i> <a href="mailto:justin@stickmanventures.com"> justin@stickmanventures.com </a>
+          </p>
+          <br />
+          <p>
+            <i class="fa fa-twitter"></i> <a class="iconned" rel="me" href="http://twitter.com/justinribeiro"> @justinribeiro</a>
+            <i class="fa fa-google-plus"></i> <a class="iconned" rel="me" href="http://google.plus.justinribeiro.com"> +Justin Ribeiro</a>
+            <i class="fa fa-github"></i> <a class="iconned" rel="me" href="http://github.justinribeiro.com"> justinribeiro </a>
+          </p>
+          <p>
+            Slides: <a href="http://goo.gl/LMVBf" title="short url to these slides">http://goo.gl/tzXnHA</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Demo #1: the bottom left corner</h2>
+          <h3>If the wifi is working data is a movin'</h3>
+          <ul>
+            <li>My Google Glass timer application pushing data to a broker</li>
+            <li>The MQTT Broker is hooked to a web socket server instance</li>
+            <li>We're listening in an updating things as fast as we can</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>What are we talking about today</h2>
+          <ol>
+            <li>Why?</li>
+            <li>Server Sent Events and Websockets</li>
+            <li>#perfmatters: faster I say</li>
+            <li>$.Callback()</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>But Justin what about...</h2>
+          <ul>
+            <li>WebRTC Data Channels
+            <ul>
+              <li>I have high hopes</li>
+              <li>RTCDataChannel API</li>
+              <li>See: <a href="http://www.html5rocks.com/en/tutorials/webrtc/datachannels/">WebRTC data channels @ HTML5 ROCKS</a></li>
+            </ul>
+            </li>
+            <li>Old browsers
+              <ul>
+                <li>Blah blah blah old IE...</li>
+                <li>Blah blah blah old Android...</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section data-background="">
+          <h2>Why SSE's and WebSockets?</h2>
+          <p>"I've got XHR and it's awesome."</p>
+          <ul>
+            <li>XHR is great for the transactional</li>
+            <li>SSE is great for text streaming to client</li>
+            <li>WebSockets are great for bi-directional low-latency text/binary</li>
+          </ul>
+        </section>
+
+        <section data-background="">
+          <h2>They're complimentary</h2>
+          <img width="700" class="image" src="images/alli_and_the_bot.jpg" alt="Alli building her Watercolorbot. :-)">
+        </section>
+
+        <section data-background="">
+          <h2>No magic bullets for sale</h2>
+          <ul>
+            <li>The propagation latency of the data packets is the same</li>
+            <li>SSE and WebSockets only remove the message queuing latency</li>
+            <li>You can't beat the speed of light</li>
+            <li>Good Read: <i><a href="http://shop.oreilly.com/product/0636920028048.do">High Performance Browser Networking</a></i></li>
+          </ul>
+        </section>
+
+        <section data-background="">
+          <h1>Real time looks easy.</h1>
+        </section>
+
+        <section data-background="">
+          <h2>Server-Sent Event Wire Up</h2>
+          <pre><code>
+var myServerSentEvent = new EventSource("something.php");
+
+myServerSentEvent.onopen = function () {
+    // I'm open for business
+};
+
+myServerSentEvent.onmessage = function(event){
+  // Steam me some text
+};
+
+myServerSentEvent.onerror = function (event) {
+  // Call John: ask him to press reset button on rack 2
+};
+          </code></pre>
+        </section>
+        
+        <section data-background="#0099CC">
+          <h2>We gotta talk about IE / Android</h2>
+          <p>Hey, you said you weren't going to talk about them!</p>
+          <ul>
+            <li>Sure, the old IE 6/7/8 doesn't implement EventSource</li>
+            <li>Problem is, neither do the newer IE 9/10/11</li>
+            <li>Only the most recent version of Android (4.4 supports it)</li>
+            <li>See: <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills#wiki-eventsource">Modernizr Wiki for polyfill options</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>SSE: the good parts</h2>
+          <p></p>
+          <ul>
+            <li>Can only be UTF-8 encoded text: apply app logic and go</li>
+            <li>event-steam = HTTP streaming = gzip it!</li>
+            <li>Memory-efficent: once a message is processed, it's gone.</li>
+            <li>Custom events</li>
+          </ul>
+            <pre><code>
+myServerSentEvent.addEventListener("someEventTag", function(event){...});
+            </code></pre>  
+        </section>
+        
+        <section>
+          <h2>SSE: the not so good parts</h2>
+          <p></p>
+          <ul>
+            <li>Can only be UTF-8 encoded text: no binary (hint: that's what WebSockets are for)</li>
+            <li>Lucy, Ethel and the choclate problem: no sending back<l/li>
+            <li>The problem with the polyfill options: XHR transport overhead</li>
+          </ul>
+        </section>
+
+        <section data-background="">
+          <h2>WebSocket Wire Up</h2>
+          <pre><code>
+var myWebSocket = new WebSocket("ws://somewhere");
+                
+myWebSocket.onopen = function(event){
+  // I'm open for business
+};
+
+myWebSocket.onclose = function(event){
+  // what? I closed? What happened?
+};
+
+myWebSocket.onmessage = function(event){
+  // ahhh some data
+  // I think it's a cat
+};
+
+myWebSocket.onerror = function(event){
+  // no one worries about icebergs
+};
+          </code></pre>
+        </section>
+
+        <section data-background="#DB2509">
+          <h2>The devil is in the details</h2>
+          <ul>
+            <li>Are we text or binary?</li>
+            <li>Did we implement the compression or did the server on the frame?</li>
+            <li>Are we talking in a subprotocal?</li>
+            <li>Wait, what's in the payload?</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Frame up that frame, Mr. McFrame</h2>
+          <pre><code>
+myWebSocket.onmessage = function(event){
+  if(event.data instanceof Blob) {
+    // an immutable picture of my kids
+  } else {
+    // some text describing my kids
+  }
+};
+          </code></pre>          
+        </section>
+        
+        <section>
+          <h2>That Socket needs to take a hint</h2>
+          <p>I don't have an immutable, just make it an arraybuffer</p>
+          <pre><code>
+myWebSocket.binarytype = "arraybuffer";
+
+myWebSocket.onmessage = function(event){
+  if(event.data instanceof ArrayBuffer) {
+    // let's split this buffer up
+  } else {
+    // some text describing my kids
+  }
+};
+          </code></pre>          
+        </section>
+        
+        <section>
+          <h2>Where's my compression?</h2>
+          <ul>
+            <li>Could use Sec-WebSocket-Extensions: permessage-deflate if browser/server support</li>
+            <li>Could be custom compressing your data: offsets of things</li>
+          </ul>
+            <pre><code>
+myWebSocket.onmessage = function(event){
+  if(event.data instanceof ArrayBuffer) {
+  
+    // known: byte offsets and big-endian
+    var dataView = new DataView(event.data);
+    var sensorId = dataView.getUint8(0);
+    var temp     = dataView.getUint16(1); 
+    var lux      = dataView.getUint8(3);
+  
+  }
+};
+          </code></pre>          
+        </section>
+        
+        <section>
+          <h2>The websocket rabbit hole</h2>
+          <ul>
+            <li>Lots of options and implementation choices to be made</li>
+            <li>The flexibility results in application complexity</li>
+          </ul>
+        </section>
+
+        <section data-background="">
+          <h2>Communication required.</h2>
+          <img width="700" class="image" src="images/my-twins-on-chromebooks.jpg" alt="Twins playing with DevTools values. :-)">
+        </section>
+
+        <section data-background="">
+          <h2>Pssf, I just need JSON send it now</h2>
+        </section>
+
+        <section data-background="">
+          <h2>#perfmatters: Your bandwidth</h2>
+          <p>Demo #02: Sensor A1 Reporting <span id="fd-sensor-a1-temp"></span>&deg; <span id="fd-sensor-a1-lux"></span>lx</p>
+          <pre><code>
+{
+  "topic": "office/sensors/a1/out",
+  "message": {
+    "degF": 71.9,
+    "lux": 222.8
+  }
+}
+          </code></pre>
+          <p>93 bytes. A tiny perfect JSON world.</p>
+        </section>
+
+        <section>
+          <h2>But it's not a perfect world</h2>
+          <p>It's always easy when there's only one.</p>
+          <ul>
+            <li>JSON can be huge</li>
+            <li>Resolution can be fast (~20 a second)</li>
+            <li>You can have lots of them!</li>
+          </ul>
+          <p>(93 bytes * 20/second) = 1.8kb.</p>
+          <p>100 sensors = 180kb a second!</p>
+        </section>
+        
+        <section>
+          <h2>Demo #03 - Sensors</h2>
+          <div id="sensorOutputs">
+            <div id="office-sensors-a0-out">A0s0: <span class="o2 temp"></span><span class="temp">&deg;</span> A0s1: <span class="o1 temp"></span><span class="temp">&deg;</span></div>
+            <div id="office-sensors-a2-out">A2s0: <span class="o2 temp"></span><span class="temp">&deg;</span> A2s1: <span class="o1 temp"></span><span class="temp">&deg;</span></div>
+            <div>A1: <span id="office-sensors-a1-out" class="temp"></span><span class="temp">&deg;</span> A3: <span id="office-sensors-a3-out" class="temp"></span><span class="temp">&deg;</span> A4: <span id="office-sensors-a4-out" class="temp"></span><span class="temp">&deg;</span> A5: <span id="office-sensors-a5-out" class="temp"></span><span class="temp">&deg;</span></div>
+            
+            <div id="office-printers-rep01-status-tools">Rep 1 Dual: X1: <span class="ext1 temp"></span>&deg; X2:<span class="ext2 temp"></span>&deg; P1:<span class="ext3 temp"></span>&deg;</div>
+            <div id="office-printers-rep01-status-build" class="smaller"> Elapsed: <span class="elapsed temp"></span> Remaining: <span class="remaining temp"></span> Complete Lines: <span class="completelines temp"></span> Total Lines: <span class="totallines temp"></span></div>
+            
+            
+            <div id="office-printers-rep02-status-tools">Rep 2 Sail: X1:<span class="ext1 temp"></span>&deg;</div>
+            <div id="office-printers-rep02-status-build" class="smaller"> Elapsed: <span class="elapsed temp"></span> Remaining: <span class="remaining temp"></span> Complete Lines: <span class="completelines temp"></span> Total Lines: <span class="totallines temp"></span></div>
+          </div>
+        </section>
+      
+        <section data-background="#007777">
+          <h1>Everything is amplified</h1>
+        </section>
+
+        <section>
+          <h2>#perfmatters: DOM DOM DOM</h2>
+          <p>The magical Checklist-O-DOM-update</p>
+          <ol>
+            <li>Does this data need to update the DOM?</li>
+            <li>Can I batch it with other updates?</li>
+            <li>Should I be holding that DOM element for later?</li>
+            <li>What's my reflow look like?</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>If you can, cache your update target</h2>
+          <p>Bad selectors will ruin you: be specific, cache it, use it</p>
+          <pre><code>
+// We'll keep it around for a while  
+if (!JDR.sensors.cache[topic]) {
+  var eleName = topic.replace(/\//g, "-");
+  JDR.sensors.cache[topic] = $("#" + eleName);
+  JDR.sensors.cache[topic]['o1'] = JDR.sensors.cache[topic].find('.o1');
+  JDR.sensors.cache[topic]['o2'] = JDR.sensors.cache[topic].find('.o2');
+}
+          </code></pre>
+          <p>This is not a new concept. You should be doing this even if you're not using real time data.</p>
+        </section>
+
+        <section data-background="">
+          <h2>Update a DOM element</h2>
+          <p>When in need of pure speed, textContent can be your friend.</p>
+          <pre><code>
+// We'll keep it around for a while  
+var myElementToUpdate = $("#glass-timer");
+
+//... WebSocket / EventSource Wire Up
+
+// Update that text!
+myElementToUpdate[0].textContent = data.message;
+          </code></pre>
+          <p></p>
+        </section>
+        
+        <section>
+          <h2>Use Layout Boundries</h2>
+          <p>You're updating the DOM, which means it's going to recalc</p>
+          <p>Limit the scope as much as you can.</p>
+          <pre><code>
+/* Layout Boundary for updating Glass stat pack */
+#statpack {
+  left: 10px;
+  bottom: 10px;
+  width: 250px;
+  height: 100px;
+  overflow: hidden;
+  position: absolute;
+}
+          </code></pre>
+          <p>Great tool: <a href="https://github.com/paullewis/Boundarizr">paullewis/Boundarizr</a></p>
+          <p>Great read: <a href="http://wilsonpage.co.uk/introducing-layout-boundaries/">Introducing 'layout boundaries'</a></p>
+        </section>
+
+        <section data-background="">
+          <h2>Just the facts ma'am</h2>
+          <p>When #perfmatters you can't be afraid to diverge as needed</p>
+          <p>By the numbers: <a href="http://jsperf.com/jquery-html-vs-text-vs-innerhtml-vs-innertext-textconte/8">JS Perf Test - $.html(), $.text(), textContent</a></p>
+          <p>Glass stat pack: from 2.1ms to 0.5ms</p>
+        </section>
+
+        <section data-background="">
+          <h2>I'm not seeing a lot of jQuery here.</h2>
+          <br>
+          <h3 class="fragment">Let's add some.</h3>
+        </section>
+
+        <section data-background="">
+          <h2>$.Callbacks() = @#$%^ awesome</h2>
+          <p>Internally used by $.ajax() and $.Deferred() components</p>
+          <br>
+          <p class="fragment">Humm, websocket/SSE with $.Deferred() support sounds nice.</p>
+          <br>
+          <p class="fragment">Let's do that.</p>
+        </section>
+
+        <section data-background="">
+          <h2>jquery.websocket.callback.js</h2>
+          <p></p>
+          <ul>
+            <li>Wraps the WebSocket API and uses $.Callbacks()</li>
+            <li>Uses a pubsub / observer pattern topic system</li>
+          </ul>
+        </section>
+        
+        <section data-background="">
+          <h2>Wire Up</h2>
+          <p>Pretty straight forward</p>
+          <pre><code>
+var myBrokerEcho = $.websocket({ 
+    url: "ws://echo.websocket.org/"
+});
+
+myBrokerEcho.topic( "websocket.onOpen" ).subscribe( myOpenMethod );
+
+myBrokerEcho.topic( "websocket.onMessage" ).subscribe( myMessageMethod );
+          </code></pre>
+        </section>
+
+        <section data-background="">
+          <h2>Internally what's happening?</h2>
+          <p>Pretty straight forward</p>
+          <pre><code>
+// ...
+ws.connection.onopen = function(event){
+    ws.topic( "websocket.onOpen" ).publish( event.data );
+};
+
+ws.connection.onclose = function(event){
+    ws.topic( "websocket.onClose" ).publish( event.data );
+};
+
+ws.connection.onmessage = function(event){
+  // ... doing some other stuff
+  ws.topic( "websocket.onMessage" ).publish( data );
+};
+
+ws.topic( "websocket.send" ).subscribe( this.send );
+// ...
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Wait what's with the send?</h2>
+          <p>Internally, it's subscribing to a topic and using it's own method to send back to the open socket.</p>
+          <pre><code>
+ws.topic( "websocket.send" ).subscribe( this.send );
+          </code></pre>
+          <p class="fragment">How do we send to it?</p>
+        </section>
+
+        <section>
+          <h2>Well this should work right?</h2>
+          <p>Let's send some data to the socket!</p>
+          <pre><code>
+var myBrokerEcho = $.websocket({ 
+    url: "ws://echo.websocket.org/"
+});
+
+// Oh it's angry
+myBrokerEcho.topic( "websocket.send" ).publish("Send some data");
+          </code></pre>
+          <p class="fragment">It's not happy, how do we fix this?</p>
+        </section>        
+
+        <section>
+          <h2>With a $.Deferred() of course</h2>
+          <p>You can't send something to the socket before the open is finished.</p>
+          <pre><code>
+myBrokerEcho.topic( "websocket.onOpen" ).subscribe( myOpenMethod );
+
+var dfd = $.Deferred();
+var topic = myBrokerEcho.topic( "websocket.send" );
+dfd.done( topic.publish );
+
+function myOpenMethod( value ) {
+  dfd.resolve( "I'm resolved!" );
+}
+          </code></pre>
+          <p>So we create a $.Deferred() and resolve it after open</p>
+        </section>
+
+        <section>
+          <h2>What about SSE?</h2>
+          <p>I've got you covered: jquery.eventsource.callback.js</p>
+          <pre><code>
+var myScript = $.eventsource({ 
+    url: "sse.php"
+});
+
+myScript.topic( "eventsource.onMessage" ).subscribe( onMessage );
+
+function onMessage( value ) {
+  console.log("Incoming Message!", value);
+}
+          </code></pre>
+          <p>Could use some event channel support</p>
+        </section>
+
+        <section>
+          <h2>Early and young</h2>
+          <ul>
+            <li>Both libs are pretty early on in development.</li>
+            <li>Your mileage may vary.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>jQuery Plugin Creation Totals</h2>
+          <h3>Me: 2</h3>
+          <br>
+          <h3 class="fragment">Ben Alman (@cowboy): 7634*</h3>
+          <p class="fragment">* Approximate: haven't checked his repo today</p>
+          <br>
+          <p class="fragment">I am not catching up.</p>
+        </section>
+
+        <section>
+          <h2>Wrapping up</h2>
+          <ul>
+            <li>Real time data is hard.</li>
+            <li>Look beyond your code window.</li>
+            <li>$.Deferred() + WebSockets = happiness</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Source and what not</h2>
+          <ul>
+            <li><a href="https://github.com/justinribeiro/jquery-websocket-callback">justinribeiro/jquery.websocket.callback</a></li>
+            <li><a href="https://github.com/justinribeiro/jquery-eventsource-callback">justinribeiro/jquery-eventsource-callback</a></li>
+            <li><a href="https://github.com/justinribeiro/glass-gdk-timer-mqtt">justinribeiro/glass-gdk-timer-mqtt</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>The End</h1>
+          <h3>Thank you!</h3>
+          <p>
+            <i class="fa fa-twitter"></i> <a class="iconned" rel="me" href="http://twitter.com/justinribeiro"> @justinribeiro</a>
+            <i class="fa fa-google-plus"></i> <a class="iconned" rel="me" href="http://google.plus.justinribeiro.com"> +Justin Ribeiro</a>
+            <i class="fa fa-github"></i> <a class="iconned" rel="me" href="http://github.justinribeiro.com"> justinribeiro </a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+    
+    <!-- JDR: this creates a layout boundry so we don't reflow the whole page -->
+    <div id="statpack">
+      <aside id="glass-status">
+        <h1>Justin's Glass Timer</h1>
+        <h2><span id="glass-timer">30m 00s</span></h2>
+      </aside>
+    </div>
+    
+    <div id="notification" class="animated">
+        <div class="text-center notification-padding">
+            <h3 id="notification-title"></h3>
+            <p id="notification-message"></p>
+        </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="js/jquery.websocket.callback.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+      JDR = {
+        notification: {
+            defaultTimeout: 5000,
+            trigger: function (type, title, message, timeout, wait) {
+
+                $("#notification-title").html(title);
+                $("#notification-message").html(message);
+
+                var baseClasses = "fadeInUp notification-show";
+
+                // Always reset the state of the color
+                $("#notification").removeClass("notification-error notification-warning notification-success");
+
+                if (type == 1) {
+                    baseClasses = baseClasses + " notification-error"
+                }
+
+                if (type == 2) {
+                    baseClasses = baseClasses + " notification-warning"
+                }
+
+                if (type == 3) {
+                    baseClasses = baseClasses + " notification-success"
+                }
+
+                $("#notification").addClass(baseClasses);
+                        
+                if (wait == null) {
+                    if (timeout != null) {
+                        setTimeout(JDR.notification.hideHandler, timeout);
+                    } else {
+                        setTimeout(JDR.notification.hideHandler, this.defaultTimeout);
+                    }
+                }
+            },
+            hideHandler: function () {
+                $("#notification").addClass("fadeOutDown");
+
+                // the CSS3 animations are smooth...but having issue with callback on end
+                // TODO patch this to remove this hack
+                setTimeout(function () {
+                    $("#notification").removeClass().addClass("animated");
+                    $("#notification-title").html("");
+                    $("#notification-message").html("");
+                }, 2000);
+
+            }
+        },
+        utils: {
+
+          // Let's just keep this simple, no fancy
+          msToPretty: function( rawMs ) {
+                        
+            var ms = rawMs % 1000;
+            rawMs = (rawMs - ms) / 1000;
+
+            var secs = rawMs % 60;
+            rawMs = (rawMs - secs) / 60;
+            
+            var mins = rawMs % 60;
+
+            return mins + 'm ' + secs + 's ' + ms + 'ms ';
+          }
+        },
+        glass: {
+          ws: null,
+          glassUpdateDomElement: null,
+          onOpen: function ( value ) {
+            JDR.notification.trigger(3,
+                "Connected to Websocket",
+                "Now listening for data from the broker"
+            );
+          },
+          onMessage: function ( value ) {
+
+            var obj = jQuery.parseJSON(value);
+
+            if (typeof Number(obj.message) === 'number'){
+              var prettyTime = JDR.utils.msToPretty(obj.message);
+              JDR.glass.glassUpdateDomElement[0].textContent = prettyTime;
+            }
+
+          }
+        },
+        sensors: {
+          ws: null,
+          cache: {},
+          onOpen: function ( value ) {
+            
+            // sensors
+            // sensors are set to not be stupid
+            // they won't give full set for demo on these topics
+            JDR.sensors.ws.topic( "office/sensors/a0/out" ).subscribe( JDR.sensors.dualTemp );
+            JDR.sensors.ws.topic( "office/sensors/a1/out" ).subscribe( JDR.sensors.temperature );
+            JDR.sensors.ws.topic( "office/sensors/a2/out" ).subscribe( JDR.sensors.dualTemp );
+            JDR.sensors.ws.topic( "office/sensors/a3/out" ).subscribe( JDR.sensors.temperature );
+            JDR.sensors.ws.topic( "office/sensors/a4/out" ).subscribe( JDR.sensors.temperature );
+            JDR.sensors.ws.topic( "office/sensors/a5/out" ).subscribe( JDR.sensors.temperature );
+            
+            // Rep 1
+            JDR.sensors.ws.topic( "office/printers/rep01/status/tools" ).subscribe( JDR.sensors.p3dTools );
+            JDR.sensors.ws.topic( "office/printers/rep01/status/build" ).subscribe( JDR.sensors.p3dStatus );
+            
+            // Rep 2
+            JDR.sensors.ws.topic( "office/printers/rep02/status/tools" ).subscribe( JDR.sensors.p3dTools );
+            JDR.sensors.ws.topic( "office/printers/rep02/status/build" ).subscribe( JDR.sensors.p3dStatus );
+            
+          },
+          temperature: function( topic, message ) {
+           
+            if (message === undefined) {
+              return false;
+            }
+            
+            // Resolve issue with sensors A5 and A4
+            // because this is what happens when you use exp driver + bad json lib
+            // blah
+            message = message.replace(/'/g, '"');
+            
+            var data = jQuery.parseJSON(message);
+            
+            if (!JDR.sensors.cache[topic]) {
+              var eleName = topic.replace(/\//g, "-");
+              JDR.sensors.cache[topic] = $("#" + eleName);
+            }
+            
+            JDR.sensors.cache[topic][0].textContent = data.f;
+            
+            // cheap trick for demo #02
+            if (topic === "office/sensors/a1/out") {
+              $("#fd-sensor-a1-temp")[0].textContent = data.f;
+              $("#fd-sensor-a1-lux")[0].textContent = data.l;
+            }
+            
+          },
+          dualTemp: function( topic, message ) {
+           
+            if (message === undefined) {
+              return false;
+            }
+            
+            var data = jQuery.parseJSON(message);
+            
+            if (!JDR.sensors.cache[topic]) {
+              var eleName = topic.replace(/\//g, "-");
+              JDR.sensors.cache[topic] = $("#" + eleName);
+              JDR.sensors.cache[topic]['o1'] = JDR.sensors.cache[topic].find('.o1');
+              JDR.sensors.cache[topic]['o2'] = JDR.sensors.cache[topic].find('.o2');
+            }
+            
+            JDR.sensors.cache[topic]['o1'].html(data.f[0]);
+            JDR.sensors.cache[topic]['o2'].html(data.f[1]);
+            
+          },
+          p3dStatus: function(topic, message){
+            if (message === undefined) {
+              return false;
+            }
+            
+            // this resolves a bug in my last RepG build
+            // I would not normally do this
+            var raw = jQuery.parseJSON(message);
+            var data = jQuery.parseJSON(raw.message);
+            
+            if (!JDR.sensors.cache[topic]) {
+              var eleName = topic.replace(/\//g, "-");
+              JDR.sensors.cache[topic] = $("#" + eleName);
+              JDR.sensors.cache[topic]['elapsed'] = JDR.sensors.cache[topic].find('.elapsed');
+              JDR.sensors.cache[topic]['remaining'] = JDR.sensors.cache[topic].find('.remaining');
+              JDR.sensors.cache[topic]['completelines'] = JDR.sensors.cache[topic].find('.completelines');
+              JDR.sensors.cache[topic]['totallines'] = JDR.sensors.cache[topic].find('.totallines');
+            }
+            
+            JDR.sensors.cache[topic]['elapsed'].html(data.elapsed);
+            JDR.sensors.cache[topic]['remaining'].html(data.remaining);
+            JDR.sensors.cache[topic]['completelines'].html(data.completelines);
+            JDR.sensors.cache[topic]['totallines'].html(data.totallines);
+            
+          },
+          p3dTools: function(topic, message){
+            if (message === undefined) {
+              return false;
+            }
+            
+            // this resolves a bug in one of the RepG builds
+            // I would not normally do this
+            var raw = jQuery.parseJSON(message);
+            var data = jQuery.parseJSON(raw.message);
+            
+            if (!JDR.sensors.cache[topic]) {
+              var eleName = topic.replace(/\//g, "-");
+              JDR.sensors.cache[topic] = $("#" + eleName);
+              JDR.sensors.cache[topic]['ext1'] = JDR.sensors.cache[topic].find('.ext1');
+              JDR.sensors.cache[topic]['ext2'] = JDR.sensors.cache[topic].find('.ext2');
+              JDR.sensors.cache[topic]['ext3'] = JDR.sensors.cache[topic].find('.ext3');
+            }
+            
+            JDR.sensors.cache[topic]['ext1'].html(data[0].temp);
+            
+            // We check to see if we have secondary extruders or heated plates
+            if (data[1] !== undefined) {
+              JDR.sensors.cache[topic]['ext2'].html(data[1].temp);
+            }
+            
+            if (data[2] !== undefined) {
+              JDR.sensors.cache[topic]['ext3'].html(data[2].temp);
+            }
+          }
+          
+        }
+      };
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+        ]
+      });
+
+      $( document ).ready(function() {
+
+        // This is going to get updated a lot, let's just hang on to it
+        JDR.glass.glassUpdateDomElement = $("#glass-timer");
+
+        // Connect to the demo glass socket
+        JDR.glass.ws = $.websocket({ 
+            url: "ws://ec2-50-18-226-240.us-west-1.compute.amazonaws.com:8899/glass"
+        });
+
+        JDR.glass.ws.topic( "websocket.onOpen" ).subscribe( JDR.glass.onOpen );
+        JDR.glass.ws.topic( "websocket.onMessage" ).subscribe( JDR.glass.onMessage );
+
+        // Connect and get all the office sensor demo pack
+        JDR.sensors.ws = $.websocket({ 
+            url: "ws://ec2-50-18-226-240.us-west-1.compute.amazonaws.com:8899/broker",
+            topic: true
+        });
+
+        JDR.sensors.ws.topic( "websocket.onOpen" ).subscribe( JDR.sensors.onOpen );
+        JDR.sensors.ws.topic( "websocket.onMessage" ).subscribe( JDR.sensors.onMessage );
+          
+      });
+
+    </script>
+
+  </body>
+</html>
